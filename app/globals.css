@@ -10,7 +10,8 @@
   --color-smoke: #86868b;    /* secondary text */
   --color-graphite: #161617; /* raised surface on black */
   --color-line: #2a2a2d;     /* hairlines on black */
-  --color-signal: #2997ff;   /* the single accent, links and focus */
+  --color-signal: #30d158;   /* green accent on dark: links, focus, highlights */
+  --color-leaf: #1f8a3e;     /* green accent on light sections */
 }
 
 :root {
@@ -33,7 +34,7 @@ body {
 
 ::selection {
   background: var(--color-signal);
-  color: #fff;
+  color: #000;
 }
 
 :focus-visible {
@@ -44,7 +45,7 @@ body {
 
 /* Headline gradient used once, on the hero name. */
 .text-sheen {
-  background: linear-gradient(100deg, #f5f5f7 0%, #f5f5f7 35%, #9fd8ff 55%, #f5f5f7 75%);
+  background: linear-gradient(100deg, #f5f5f7 0%, #f5f5f7 35%, #9ff2b8 55%, #f5f5f7 75%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -65,7 +66,7 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 0 0 9px #1a1a1c,
     0 0 0 10px rgba(255, 255, 255, 0.06),
-    0 50px 120px -30px rgba(41, 151, 255, 0.25);
+    0 50px 120px -30px rgba(48, 209, 88, 0.22);
   overflow: hidden;
 }
 
