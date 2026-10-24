@@ -47,18 +47,30 @@ export default function Process() {
       id="process"
       ref={root}
       className="relative flex min-h-[100svh] flex-col justify-center bg-mist px-4 py-24 text-ink sm:px-6"
-      aria-label="How I build a data pipeline"
+      aria-label="Supply Chain Analytics Pipeline workflow"
     >
       <div className="mx-auto w-full max-w-[1024px]">
         <h2 className="max-w-[16ch] text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] font-semibold tracking-[-0.035em]">
           From raw rows to a dashboard you can trust.
         </h2>
+        <p className="mt-5 max-w-[48ch] text-[clamp(1rem,1.5vw,1.2rem)] leading-snug text-ink/60">
+          The workflow behind my{" "}
+          <a
+            href="https://github.com/harshskumar232/supply-chain-analytics"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-leaf hover:underline"
+          >
+            Supply Chain Analytics Pipeline
+          </a>{" "}
+          project, stage by stage.
+        </p>
 
         {/* The flow line */}
         <div className="relative mt-14 sm:mt-20">
           <div className="absolute left-0 right-0 top-[11px] h-[2px] rounded bg-ink/10" />
           <div
-            className="flow-fill absolute left-0 right-0 top-[11px] h-[2px] origin-left rounded bg-ink"
+            className="flow-fill absolute left-0 right-0 top-[11px] h-[2px] origin-left rounded bg-leaf"
             style={animated ? undefined : { transform: "scaleX(1)" }}
           />
           <ol className="relative grid grid-cols-4">
@@ -68,7 +80,7 @@ export default function Process() {
                 <li key={p.step} className="flex flex-col items-start">
                   <span
                     className={`grid h-6 w-6 place-items-center rounded-full border-2 transition-all duration-500 ${
-                      on ? "border-ink bg-ink scale-100" : "border-ink/25 bg-mist scale-90"
+                      on ? "border-leaf bg-leaf scale-100" : "border-ink/25 bg-mist scale-90"
                     }`}
                   >
                     <span className={`h-1.5 w-1.5 rounded-full transition-colors ${on ? "bg-mist" : "bg-transparent"}`} />
