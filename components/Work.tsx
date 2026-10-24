@@ -74,8 +74,8 @@ export default function Work() {
             Selected work.
           </h2>
           <p className="mt-6 max-w-[30ch] text-lg leading-snug text-white/60">
-            {projects.length} projects across data engineering, analytics, machine learning and LLMs.
-            Every one is on GitHub.
+            Three featured projects in BI, medical data quality and healthcare AI, then{" "}
+            {projects.length - 3} more. Every one is on GitHub.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export default function Work() {
       </div>
 
       <div className="pointer-events-none absolute bottom-10 left-[8vw] right-[8vw] hidden h-px bg-white/15 min-[900px]:block">
-        <div className="work-progress h-full origin-left scale-x-0 bg-white/70" />
+        <div className="work-progress h-full origin-left scale-x-0 bg-signal" />
       </div>
     </section>
   );
@@ -108,7 +108,7 @@ function ProjectPanel({ project: p, index }: { project: Project; index: number }
             }`}
           />
         ) : (
-          <div className="work-media flex h-full w-full flex-col justify-end bg-[radial-gradient(120%_90%_at_100%_0%,#1d2b3a_0%,#0b0b0c_60%)] p-[6%]">
+          <div className="work-media flex h-full w-full flex-col justify-end bg-[radial-gradient(120%_90%_at_100%_0%,#123322_0%,#0b0b0c_60%)] p-[6%]">
             <span className="text-[clamp(4rem,11vw,10rem)] leading-[0.85] font-semibold tracking-[-0.05em] text-white">
               {p.highlight?.value}
             </span>
