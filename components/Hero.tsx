@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { person } from "@/lib/data";
+import { heroIntro, person } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -67,19 +67,18 @@ export default function Hero() {
           <span className="block overflow-hidden pb-[0.06em]">
             <span className="hero-line text-sheen block">{person.name}.</span>
           </span>
-          <span className="block overflow-hidden pb-[0.06em]">
-            <span className="hero-line block text-white/40">Data, engineered.</span>
+          <span className="mt-[0.12em] block overflow-hidden pb-[0.08em] text-[0.5em] tracking-[-0.035em]">
+            <span className="hero-line block text-white/40">Data never lies.</span>
           </span>
         </h1>
-        <p className="hero-sub mt-8 max-w-[34ch] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-snug text-white/70">
-          M.Sc. Data Science at FAU Erlangen-Nürnberg. I build the pipelines and dashboards behind
-          business decisions.
+        <p className="hero-sub mt-8 max-w-[38ch] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-snug text-white/70">
+          {heroIntro}
         </p>
       </div>
 
       <div
         className="hero-glow pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 blur-[120px]"
-        style={{ background: "radial-gradient(closest-side, rgba(41,151,255,0.28), transparent)" }}
+        style={{ background: "radial-gradient(closest-side, rgba(48,209,88,0.22), transparent)" }}
         aria-hidden="true"
       />
 
