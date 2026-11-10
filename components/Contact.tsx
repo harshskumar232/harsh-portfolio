@@ -1,4 +1,4 @@
-import { person } from "@/lib/data";
+import { contact, person } from "@/lib/data";
 
 const socials = [
   { label: "LinkedIn", href: person.linkedin },
@@ -14,9 +14,13 @@ export default function Contact() {
         <h2 className="text-[clamp(3.5rem,12vw,11rem)] leading-[0.9] font-semibold tracking-[-0.05em]">
           Let&apos;s talk.
         </h2>
-        <p className="mt-8 max-w-[40ch] text-lg leading-snug text-white/60">
-          Open to Werkstudent roles, internships and graduate positions in data analytics, finance and controlling.
-          Based in {person.location}.
+        <p className="mt-8 max-w-[30ch] text-[clamp(1.35rem,2.4vw,1.9rem)] leading-snug font-semibold tracking-tight text-white">
+          {contact.headline}
+        </p>
+        <p className="mt-4 max-w-[52ch] text-lg leading-snug text-white/60">{contact.text}</p>
+        <p className="mt-6 flex max-w-[58ch] gap-3 text-[17px] leading-snug text-white/75">
+          <span className="mt-[0.45em] h-2 w-2 shrink-0 rounded-full bg-signal" aria-hidden="true" />
+          {contact.availability}
         </p>
 
         <div className="mt-12 flex flex-wrap items-center gap-4">

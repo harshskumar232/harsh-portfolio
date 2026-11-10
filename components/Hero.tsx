@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { heroIntro, person } from "@/lib/data";
+import { heroHeadline, heroIntro, person } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -68,10 +68,10 @@ export default function Hero() {
             <span className="hero-line text-sheen block">{person.name}.</span>
           </span>
           <span className="mt-[0.12em] block overflow-hidden pb-[0.08em] text-[0.5em] tracking-[-0.035em]">
-            <span className="hero-line block text-white/40">Data never lies.</span>
+            <span className="hero-line block text-white/40">{heroHeadline}</span>
           </span>
         </h1>
-        <p className="hero-sub mt-8 max-w-[38ch] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-snug text-white/70">
+        <p className="hero-sub mt-8 max-w-[44ch] text-[clamp(1.05rem,1.8vw,1.35rem)] leading-snug text-white/70">
           {heroIntro}
         </p>
       </div>
@@ -99,7 +99,7 @@ export default function Hero() {
           />
         </figure>
         <p className="hero-caption mt-10 text-center text-sm text-white/60 opacity-0 sm:text-base">
-          Supply Chain Analytics Pipeline. Built end to end, runs every morning.
+          Supply Chain Analytics Pipeline. Built end to end on synthetic data, runs every morning.
         </p>
       </div>
 

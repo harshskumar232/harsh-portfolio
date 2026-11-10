@@ -74,8 +74,8 @@ export default function Work() {
             Selected work.
           </h2>
           <p className="mt-6 max-w-[30ch] text-lg leading-snug text-white/60">
-            Three featured projects in BI, medical data quality and healthcare AI, then{" "}
-            {projects.length - 3} more. Every one is on GitHub.
+            {projects.length} projects, from BI dashboards to data pipelines and AI prototypes. Each one says
+            what data it uses, and all are on GitHub.
           </p>
         </div>
 
@@ -124,21 +124,27 @@ function ProjectPanel({ project: p, index }: { project: Project; index: number }
         <h3 className="mt-3 text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.05] font-semibold tracking-[-0.03em]">
           {p.title}
         </h3>
-        <p className="mt-4 text-[17px] leading-relaxed text-white/70">{p.description}</p>
-        <ul className="mt-5 space-y-2.5">
-          {p.points.map((pt) => (
-            <li key={pt} className="flex gap-3 text-[15px] leading-snug text-white/60">
-              <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-white/40" />
-              {pt}
-            </li>
+        <p className="mt-3 inline-block rounded-full border border-signal/40 px-3 py-1 text-[12px] text-signal">
+          {p.data}
+        </p>
+        <dl className="mt-5 space-y-3.5">
+          {[
+            ["Problem", p.problem],
+            ["What I did", p.work],
+            ["Result", p.result],
+          ].map(([label, text]) => (
+            <div key={label}>
+              <dt className="text-[12px] text-white/40">{label}</dt>
+              <dd className="mt-0.5 text-[15px] leading-snug text-white/75">{text}</dd>
+            </div>
           ))}
-        </ul>
-        <p className="mt-6 text-[13px] text-white/40">{p.tags.join("  ·  ")}</p>
+        </dl>
+        <p className="mt-5 text-[13px] text-white/40">{p.tags.join("  ·  ")}</p>
         <a
           href={p.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-7 inline-flex items-center gap-1.5 text-[17px] text-signal hover:underline"
+          className="mt-5 inline-flex items-center gap-1.5 text-[17px] text-signal hover:underline"
         >
           View on GitHub
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">

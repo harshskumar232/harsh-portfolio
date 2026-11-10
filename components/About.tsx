@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { about, education, languages, skills } from "@/lib/data";
+import { about, aboutHeadline, education, languages, skills } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -45,11 +45,16 @@ export default function About() {
     <section id="about" ref={root} className="overflow-hidden bg-white text-ink" aria-label="About">
       <div className="mx-auto max-w-[1024px] px-4 pt-28 pb-16 sm:px-6 sm:pt-36">
         <h2 className="rise max-w-[18ch] text-[clamp(2.5rem,5.6vw,4.75rem)] leading-[1.0] font-semibold tracking-[-0.04em]">
-          Computer science first. Data science now. Finance next.
+          {aboutHeadline}
         </h2>
-        <p className="rise mt-8 max-w-[52ch] text-[clamp(1.1rem,1.6vw,1.3rem)] leading-relaxed text-ink/70">
-          {about}
-        </p>
+        {about.map((para) => (
+          <p
+            key={para.slice(0, 24)}
+            className="rise mt-6 max-w-[56ch] text-[clamp(1.1rem,1.6vw,1.3rem)] leading-relaxed text-ink/70 first-of-type:mt-8"
+          >
+            {para}
+          </p>
+        ))}
 
         <div className="mt-20 grid gap-16 md:grid-cols-[1.4fr_1fr] md:gap-20">
           <div>
@@ -83,18 +88,23 @@ export default function About() {
 
       <div className="skills-band border-t border-ink/10 bg-mist py-16 sm:py-24" aria-label="Skills">
         <h3 className="mx-auto max-w-[1024px] px-4 text-sm font-medium text-ink/45 sm:px-6">Tools I work with</h3>
-        <div className="mt-8 space-y-3 sm:space-y-4">
-          {skills.map((row, i) => (
-            <div key={i} className="skill-row flex w-max gap-3 sm:gap-4">
-              {[...row, ...row].map((s, j) => (
+        <div className="mt-8 space-y-8 sm:space-y-10">
+          {skills.map(({ group, items }, i) => (
+            <div key={group}>
+              <p className="mx-auto mb-3 max-w-[1024px] px-4 text-[15px] font-semibold tracking-tight text-leaf sm:px-6">
+                {group}
+              </p>
+              <div className="skill-row flex w-max gap-3 sm:gap-4" data-row={i}>
+              {[...items, ...items, ...items].map((s, j) => (
                 <span
                   key={j}
-                  aria-hidden={j >= row.length}
+                  aria-hidden={j >= items.length}
                   className="whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-[clamp(1.1rem,2.4vw,1.75rem)] font-semibold tracking-tight text-ink shadow-[0_1px_0_rgba(0,0,0,0.04)] sm:px-7 sm:py-3.5"
                 >
                   {s}
                 </span>
               ))}
+              </div>
             </div>
           ))}
         </div>

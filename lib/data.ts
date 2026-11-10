@@ -5,7 +5,7 @@
 
 export const person = {
   name: "Harsh Kumar",
-  role: "Data Science & Engineering",
+  role: "Data Analytics & BI",
   email: "harshskumar59@gmail.com",
   location: "Erlangen, Germany",
   github: "https://github.com/harshskumar232",
@@ -17,41 +17,50 @@ export const person = {
   cv: "/Harsh-Kumar-Resume.pdf",
 };
 
+// Smaller line under your name in the hero.
+export const heroHeadline = "Data analytics & BI.";
+
 export const heroIntro =
-  "M.Sc. Data Science student at FAU Erlangen with industry experience in data pipelines, Power BI dashboards and KPI validation.";
+  "M.Sc. Data Science student at FAU Erlangen, looking for a working-student role in data analytics and BI. I prepare data from multiple sources, validate KPIs and build Power BI dashboards.";
 
 export const statement =
-  "I prepare data, validate KPIs and build dashboards that support business decisions.";
+  "I make sure the data is right before anyone relies on it, dig into the business question behind the numbers, and show the answer in a dashboard people can actually read.";
 
 // The pinned process scene: the workflow of the Supply Chain Analytics Pipeline project.
 export const pipeline = [
   {
     step: "Ingest",
-    tool: "Python · psycopg2",
-    text: "Daily batches land in a raw PostgreSQL schema. Upserts with ON CONFLICT keep reruns safe, so a failed night never doubles the numbers.",
+    tool: "Python · psycopg2 · Airflow",
+    text: "Brings each day's new orders into PostgreSQL without manual work.",
+    check: "Upserts with ON CONFLICT make reruns safe, so a failed night never counts a sale twice.",
   },
   {
     step: "Model",
     tool: "PostgreSQL · star schema",
-    text: "Four dimensions and one fact table. Product, supplier, date and region around every sale, so any question is one join away.",
+    text: "Arranges every sale around product, supplier, date and region, so any business question is one join away.",
+    check: "Unique and not-null tests on every key, so each sale links to exactly one product and supplier.",
   },
   {
     step: "Transform",
     tool: "dbt · staging, marts, reports",
-    text: "Layered dbt models clean, type-cast and aggregate. Custom tests catch negative revenue, impossible dates and broken margins before anyone sees them.",
+    text: "Cleans and type-casts the raw data, then builds the KPI tables the dashboard reads from.",
+    check: "Custom dbt tests stop negative revenue, dates outside the valid range and impossible margins.",
   },
   {
     step: "Serve",
     tool: "Streamlit · Plotly",
-    text: "KPI dashboards with rolling averages, category margins and an EU country breakdown, filterable by date, country and channel.",
+    text: "Shows revenue trends, category margins and country splits, filterable by date, country and channel.",
+    check: "The dashboard reads only from tested report tables, never from raw data.",
   },
 ];
 
 export type Project = {
   title: string; // keep identical to the GitHub repo / resume name
   category: string;
-  description: string;
-  points: string[];
+  data: string; // where the data comes from: practice dataset, synthetic, prototype…
+  problem: string;
+  work: string; // your contribution
+  result: string; // finding or result
   tags: string[];
   link: string;
   image?: string; // file in /public/projects. Leave out for a type-only card.
@@ -59,107 +68,99 @@ export type Project = {
   highlight?: { value: string; label: string }; // shown on cards without an image
 };
 
+// Shown in this order in the horizontal gallery.
 export const projects: Project[] = [
-  // ── Featured: shown first ──
   {
     title: "Pharmaceutical Sales Analysis",
     category: "BI & Analytics",
-    description:
-      "Distributor-level sales analysis for Germany and Poland, from raw multi-source data to stakeholder dashboards.",
-    points: [
-      "Integrated 500K+ sales records from three sources and identified 15+ data-quality issues",
-      "Designed a normalized star schema with five fact and dimension tables",
-      "Built three dashboards covering territory performance, distributor trends and revenue forecasts for 20+ sales stakeholders",
-    ],
+    data: "Practice dataset (Foresight BI)",
+    problem:
+      "Distributor sales files from Germany and Poland gave no single view of which teams, products and cities drive revenue.",
+    work:
+      "Integrated 500K+ records from three sources, found and fixed 15+ data-quality issues, and modelled them as a star schema with five tables in Power BI.",
+    result:
+      "Three dashboards for leadership, sales managers and the head of sales: territory performance, distributor trends and revenue forecasts.",
     tags: ["Power BI", "Power Query", "DAX", "SQL", "Data Modeling"],
     link: "https://github.com/harshskumar232/Pharmaceutical-Sales-Analysis",
     image: "/projects/pharmaceutical-sales.webp",
   },
   {
+    title: "Supply Chain Analytics Pipeline",
+    category: "Data Pipeline",
+    data: "Synthetic data (generated with Faker)",
+    problem: "Sales data should reach a KPI dashboard every day, checked, without anyone touching it by hand.",
+    work:
+      "Built the full pipeline: Python ingestion into PostgreSQL, dbt models on a star schema with data-quality tests, a daily Airflow run and a Streamlit dashboard.",
+    result:
+      "Reruns are safe, and bad data such as negative revenue or impossible dates is caught by tests before it reaches the dashboard.",
+    tags: ["Python", "Airflow", "PostgreSQL", "dbt", "Docker", "Streamlit"],
+    link: "https://github.com/harshskumar232/supply-chain-analytics",
+    image: "/projects/supply-chain-analytics.webp",
+  },
+  {
     title: "MRI Reconstruction Project",
     category: "Research · Data Quality",
-    description:
-      "Data-quality analysis of speech MRI recordings that flags audio-video issues for manual validation.",
-    points: [
-      "Analyzed 2,371 speech MRI videos from 75 subjects",
-      "Checked for eight types of audio-video issues and flagged 259 files (10.9%) for review",
-      "Produced Excel reports and charts, and recalibrated thresholds to reduce false positives",
-    ],
+    data: "Public research dataset (Figshare)",
+    problem:
+      "2,371 real-time speech MRI videos from 75 speakers needed checking for audio-video problems before research use.",
+    work:
+      "Wrote a Python analyser that measures sync offset with cross-correlation and checks for eight types of audio-video issues, with results in Excel reports and charts.",
+    result:
+      "Flagged 259 files (10.9%) for manual review, after recalibrating thresholds to cut false positives. These are flags to validate, not confirmed failures.",
     tags: ["Python", "pandas", "SciPy", "librosa", "OpenCV", "Excel reporting"],
     link: "https://github.com/harshskumar232/MRI-reconstruction-project",
     image: "/projects/mri-sync-analyzer.webp",
     fit: "contain",
   },
   {
-    title: "MedRAG",
-    category: "AI / LLM",
-    description:
-      "An AI assistant for healthcare documents that answers questions grounded in uploaded PDFs and data files, with agents for summaries and structured symptom checks.",
-    points: [
-      "Parses PDF, CSV, JSON and TXT into a persistent ChromaDB store",
-      "Two agents: a medical summary agent and a structured symptom checker",
-      "REST API in FastAPI connected to an HTML frontend",
-    ],
-    tags: ["Python", "FastAPI", "Claude API", "ChromaDB", "Docker"],
-    link: "https://github.com/harshskumar232/medrag",
-    highlight: { value: "4", label: "document formats, one vector store" },
-  },
-  // ── More projects ──
-  {
-    title: "Supply Chain Analytics Pipeline",
-    category: "Data Engineering",
-    description:
-      "An end-to-end pipeline that ingests supply chain data, models it with dbt and serves live KPI dashboards.",
-    points: [
-      "Daily Airflow DAG with incremental upserts into a PostgreSQL warehouse",
-      "Layered dbt models on a star schema with custom data-quality tests",
-      "Streamlit dashboard for revenue trends, category margins and EU countries",
-    ],
-    tags: ["Python", "Airflow", "PostgreSQL", "dbt", "Docker", "Streamlit"],
-    link: "https://github.com/harshskumar232/supply-chain-analytics",
-    image: "/projects/supply-chain-analytics.webp",
+    title: "Customer Churn Prediction",
+    category: "Machine Learning",
+    data: "Practice dataset (IBM Telco Customer Churn)",
+    problem: "Which telecom customers are likely to leave, and what drives it?",
+    work:
+      "Cleaned the data, analysed churn by contract, tenure and charges in SQL, and compared logistic regression with a random forest.",
+    result:
+      "Logistic regression reached 0.84 ROC AUC on held-out customers. Short tenure, month-to-month contracts and fibre internet were the strongest churn signals.",
+    tags: ["Python", "scikit-learn", "pandas", "SQL"],
+    link: "https://github.com/harshskumar232/Customer-Churn-Prediction---Python-SQL",
+    highlight: { value: "0.84", label: "ROC AUC on held-out customers" },
   },
   {
     title: "RAG Document Q&A",
     category: "AI / LLM",
-    description:
-      "Multi-PDF question answering in German and English, where every answer cites its source.",
-    points: [
-      "Hybrid retrieval: ChromaDB dense search plus BM25, fused with Reciprocal Rank Fusion",
-      "Answers cite file, page and block, with five turns of conversation memory",
-      "Analytics tab tracking queries, latency and language in SQLite",
-    ],
+    data: "Prototype",
+    problem: "Answers buried in long German and English PDFs are slow to find, and AI answers are hard to trust without a source.",
+    work:
+      "Built hybrid search (ChromaDB plus BM25 with rank fusion), answers that cite file, page and block, five turns of memory and an analytics tab.",
+    result: "A working prototype where every answer can be checked against the exact place it came from.",
     tags: ["Python", "ChromaDB", "BM25", "Llama 3.3", "Streamlit"],
     link: "https://github.com/harshskumar232/rag-document-qa",
     image: "/projects/rag-document-qa.webp",
   },
   {
-    title: "Customer Churn Prediction",
-    category: "Machine Learning",
-    description:
-      "Predicts telecom customer churn and surfaces the drivers that retention teams can act on.",
-    points: [
-      "Classification model on the Telco Customer Churn dataset",
-      "Feature importance analysis for the top churn drivers",
-      "SQL analysis by contract type, tenure and monthly charges",
-    ],
-    tags: ["Python", "scikit-learn", "pandas", "SQL"],
-    link: "https://github.com/harshskumar232/Customer-Churn-Prediction---Python-SQL",
-    highlight: { value: "0.84", label: "AUC on held-out customers" },
-  },
-  {
     title: "SQL Query Assistant",
     category: "AI / Analytics",
-    description:
-      "Ask a question about sales data in plain English and get both the SQL and the answer.",
-    points: [
-      "LLM turns questions into SQLite queries on the Superstore dataset",
-      "Shows the generated SQL next to the result table",
-      "One-click example questions and clear error messages",
-    ],
+    data: "Prototype · practice dataset (Superstore)",
+    problem: "Business users can't query sales data without knowing SQL.",
+    work:
+      "Built a Streamlit app where an LLM turns plain-English questions into SQL, runs it on SQLite and shows the query next to the result.",
+    result:
+      "Early prototype, checked by hand on example questions. Next: read-only access, automatic retries and a proper evaluation set.",
     tags: ["Python", "Streamlit", "SQLite", "pandas", "Llama 3.3"],
     link: "https://github.com/harshskumar232/sql-assistant",
     highlight: { value: "SQL", label: "written for you, shown in full" },
+  },
+  {
+    title: "MedRAG",
+    category: "AI / LLM",
+    data: "Prototype · not for clinical use",
+    problem: "Healthcare information is spread across PDFs, spreadsheets and notes, and finding what matters takes time.",
+    work:
+      "Built an assistant that indexes PDF, CSV, JSON and TXT files in ChromaDB and answers from them through a FastAPI backend, with agents for summaries and structured symptom checks.",
+    result: "A local prototype whose answers stay grounded in the uploaded files.",
+    tags: ["Python", "FastAPI", "Claude API", "ChromaDB", "Docker"],
+    link: "https://github.com/harshskumar232/medrag",
+    highlight: { value: "4", label: "document formats, one vector store" },
   },
 ];
 
@@ -169,16 +170,22 @@ export const experience = [
     org: "Suflex Media",
     meta: "Bangalore · Hybrid",
     period: "January 2024 – February 2025",
+    summary:
+      "Worked on Intaskr (intaskr.com), the company's SaaS platform for task management, workflow automation and team collaboration.",
     points: [
-      "Contributed to the backend and data infrastructure of Intaskr, a SaaS task-management platform",
-      "Automated Python and SQL ETL pipelines processing 230K+ records per day",
-      "Built Power BI dashboards for 20+ stakeholders to track business metrics, KPIs and operational performance",
+      "Helped move the company from manual data handling to automated Python and SQL ETL pipelines that process 230K+ records per day",
+      "Designed and built Power BI dashboards on business metrics, KPIs and operational performance, used by 20+ stakeholders across teams",
+      "Contributed to the backend development and data infrastructure behind the platform",
     ],
   },
 ];
 
-export const about =
-  "I am an M.Sc. Data Science student at FAU Erlangen, based in Erlangen, Germany. My experience includes automated data pipelines, Power BI reporting and KPI validation. My projects also explore medical imaging data quality and AI assistants for healthcare documents.";
+export const aboutHeadline = "From computer science to data analytics.";
+
+export const about = [
+  "I studied Computer Science Engineering at SRM University, then spent a year as a data analyst at Suflex Media, automating data pipelines and building Power BI dashboards for the people who ran the business.",
+  "Now I'm doing my M.Sc. in Data Science at FAU Erlangen. The part I enjoy most is the step between raw data and a decision: checking that the numbers are right, finding what they say and presenting it clearly. My projects also explore medical imaging data quality and AI assistants for healthcare documents.",
+];
 
 export const education = [
   {
@@ -193,17 +200,36 @@ export const education = [
   },
 ];
 
-// Three moving rows: programming and tools / BI and reporting / data and AI.
+// Three moving rows, grouped by what the skills are for.
 export const skills = [
-  ["Python", "pandas", "NumPy", "scikit-learn", "SQL", "PostgreSQL", "Git", "Docker"],
-  ["Power BI", "DAX", "Power Query", "Excel", "Dashboard design", "KPI validation", "Star-schema modeling"],
-  ["ETL", "Data integration", "Data validation", "RAG", "LLM assistants", "Azure"],
+  {
+    group: "Analysis & Reporting",
+    items: ["Power BI", "DAX", "Power Query", "Excel", "Dashboard design", "KPI validation"],
+  },
+  {
+    group: "Data Preparation & Modelling",
+    items: ["SQL", "PostgreSQL", "Python", "pandas", "NumPy", "ETL", "Data integration", "Data validation", "Star-schema modeling"],
+  },
+  {
+    group: "Supporting Engineering & AI",
+    items: ["scikit-learn", "Git", "Docker", "Azure", "RAG", "LLM assistants"],
+  },
 ];
 
 export const languages = [
   { name: "English", level: "C1" },
   { name: "German", level: "B1 in progress" },
 ];
+
+export const vlogIntro =
+  "Outside data, I run a YouTube channel for Indian students moving to Germany: budget hauls, Kleinanzeigen finds and honest tips. Making videos taught me to explain things simply to people who are new to them, which is what a good dashboard does too.";
+
+export const contact = {
+  headline: "Looking for a working-student role in Data Analytics or BI.",
+  text: "Also open to internships.",
+  availability:
+    "Available immediately, up to 20 hours a week during the semester and full-time in semester breaks. Based in Erlangen, close to Nuremberg and Forchheim.",
+};
 
 // Paste any YouTube link. Title and thumbnail load from YouTube.
 export const videos = [

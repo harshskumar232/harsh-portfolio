@@ -44,7 +44,8 @@ export default function Experience() {
             <p className="mt-1 text-lg text-ink/70">
               {e.org} · {e.meta}
             </p>
-            <ul className="mt-6 max-w-[62ch] space-y-3">
+            <p className="mt-5 max-w-[62ch] text-[17px] leading-relaxed text-ink/70">{e.summary}</p>
+            <ul className="mt-5 max-w-[62ch] space-y-3">
               {e.points.map((pt) => (
                 <li key={pt} className="flex gap-3 text-[17px] leading-snug text-ink/75">
                   <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-ink/40" />

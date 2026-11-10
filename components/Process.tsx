@@ -104,7 +104,7 @@ export default function Process() {
         </p>
 
         {/* Active stage detail: crossfades on scroll; all shown when motion is reduced */}
-        <div className="relative mt-12 min-h-[11rem] sm:mt-16">
+        <div className="relative mt-10 min-h-[15rem] sm:mt-14 sm:min-h-[13rem]">
           {pipeline.map((p, i) => (
             <div
               key={p.step}
@@ -120,6 +120,13 @@ export default function Process() {
               <p className="text-sm font-medium text-ink/50">{p.tool}</p>
               <p className="mt-3 max-w-[46ch] text-[clamp(1.15rem,2.2vw,1.6rem)] leading-snug font-medium tracking-tight text-ink">
                 {p.text}
+              </p>
+              <p className="mt-4 flex max-w-[60ch] gap-3 text-[clamp(0.95rem,1.4vw,1.1rem)] leading-snug text-ink/70">
+                <span className="mt-[0.45em] h-2 w-2 shrink-0 rounded-full bg-leaf" aria-hidden="true" />
+                <span>
+                  <span className="font-medium text-leaf">Quality check: </span>
+                  {p.check}
+                </span>
               </p>
             </div>
           ))}

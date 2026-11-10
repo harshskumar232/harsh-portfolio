@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { person, videos } from "@/lib/data";
+import { person, videos, vlogIntro } from "@/lib/data";
 
 function videoId(url: string) {
   const m = url.match(/(?:v=|youtu\.be\/|shorts\/|embed\/|live\/)([A-Za-z0-9_-]{11})/);
@@ -18,10 +18,7 @@ export default function Vlog() {
             <h2 className="text-[clamp(2.5rem,5.6vw,4.75rem)] leading-[1.0] font-semibold tracking-[-0.04em]">
               Off the clock.
             </h2>
-            <p className="mt-6 max-w-[44ch] text-lg leading-snug text-white/60">
-              I film what studying and living in Germany is really like: budget hauls, Kleinanzeigen finds and
-              honest tips for Indian students planning the move.
-            </p>
+            <p className="mt-6 max-w-[48ch] text-lg leading-snug text-white/60">{vlogIntro}</p>
           </div>
           <a
             href={person.youtube}
