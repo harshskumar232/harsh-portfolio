@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { person } from "@/lib/data";
 
 const links = [
+  { href: "#experience", label: "Experience" },
   { href: "#work", label: "Work" },
   { href: "#process", label: "Process" },
   { href: "#about", label: "About" },

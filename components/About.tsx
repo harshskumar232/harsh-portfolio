@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { education, experience, languages, skills } from "@/lib/data";
+import { about, education, languages, skills } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -48,68 +48,35 @@ export default function About() {
           Computer science first. Data science now. Finance next.
         </h2>
         <p className="rise mt-8 max-w-[52ch] text-[clamp(1.1rem,1.6vw,1.3rem)] leading-relaxed text-ink/70">
-          I came to Germany with a Computer Science degree and ten months of production data engineering behind
-          me. Today I study Data Science at FAU and build projects for the job I want next: data analytics in
-          finance and controlling, where clean numbers decide where money goes.
+          {about}
         </p>
 
         <div className="mt-20 grid gap-16 md:grid-cols-[1.4fr_1fr] md:gap-20">
           <div>
-            <h3 className="rise text-sm font-medium text-ink/45">Experience</h3>
-            {experience.map((e) => (
-              <article key={e.role} className="rise mt-5 border-t border-ink/10 pt-6">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                  <p className="text-2xl font-semibold tracking-tight">{e.role}</p>
-                  <p className="text-sm text-ink/50">{e.period}</p>
-                </div>
-                <p className="mt-1 text-lg text-ink/70">
-                  {e.org}
-                  {e.orgLink && (
-                    <>
-                      {" · "}
-                      <a href={e.orgLink} target="_blank" rel="noopener noreferrer" className="text-[#0066cc] hover:underline">
-                        Intaskr
-                      </a>
-                    </>
-                  )}
-                </p>
-                <p className="mt-4 text-[17px] leading-relaxed text-ink/70">{e.summary}</p>
-                <ul className="mt-4 space-y-3">
-                  {e.points.map((pt) => (
-                    <li key={pt} className="flex gap-3 text-[16px] leading-snug text-ink/75">
-                      <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-ink/40" />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            <h3 className="rise text-sm font-medium text-ink/45">Education</h3>
+            <ul className="mt-5">
+              {education.map((ed) => (
+                <li key={ed.degree} className="rise border-t border-ink/10 py-6">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <p className="text-2xl font-semibold tracking-tight">{ed.org}</p>
+                    <p className="text-sm text-ink/50">{ed.period}</p>
+                  </div>
+                  <p className="mt-1 text-lg text-ink/70">{ed.degree}</p>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="space-y-14">
-            <div>
-              <h3 className="rise text-sm font-medium text-ink/45">Education</h3>
-              <ul className="mt-5">
-                {education.map((ed) => (
-                  <li key={ed.degree} className="rise border-t border-ink/10 py-5">
-                    <p className="text-xl font-semibold tracking-tight">{ed.degree}</p>
-                    {ed.org && <p className="mt-1 text-[16px] text-ink/70">{ed.org}</p>}
-                    <p className="mt-1 text-sm text-ink/50">{ed.period}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="rise text-sm font-medium text-ink/45">Languages</h3>
-              <ul className="mt-5">
-                {languages.map((l) => (
-                  <li key={l.name} className="rise flex items-baseline justify-between border-t border-ink/10 py-4">
-                    <span className="text-xl font-semibold tracking-tight">{l.name}</span>
-                    <span className="text-ink/50">{l.level}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div>
+            <h3 className="rise text-sm font-medium text-ink/45">Languages</h3>
+            <ul className="mt-5">
+              {languages.map((l) => (
+                <li key={l.name} className="rise flex items-baseline justify-between border-t border-ink/10 py-6">
+                  <span className="text-2xl font-semibold tracking-tight">{l.name}</span>
+                  <span className="text-ink/50">{l.level}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

@@ -12,15 +12,18 @@ export const person = {
   linkedin: "https://linkedin.com/in/harshkumar23/",
   youtube: "https://www.youtube.com/@maiharsh",
   instagram: "https://instagram.com/mai.harsh",
-  // Drop your CV into /public (e.g. public/Harsh-Kumar-CV.pdf) and put
-  // "/Harsh-Kumar-CV.pdf" here. While empty, the CV button stays hidden.
-  cv: "",
+  // Your CV lives at public/Harsh-Kumar-Resume.pdf. Replace that file to
+  // update it. Set this to "" to hide the Download CV button.
+  cv: "/Harsh-Kumar-Resume.pdf",
 };
 
-export const statement =
-  "I take raw, messy data and turn it into numbers people can trust. Pipelines that run before anyone is awake, models that hold up, and dashboards that answer the question before the meeting starts.";
+export const heroIntro =
+  "M.Sc. Data Science student at FAU Erlangen with industry experience in data pipelines, Power BI dashboards and KPI validation.";
 
-// The pinned "how I build" scene. Based on the Supply Chain pipeline.
+export const statement =
+  "I prepare data, validate KPIs and build dashboards that support business decisions.";
+
+// The pinned process scene: the workflow of the Supply Chain Analytics Pipeline project.
 export const pipeline = [
   {
     step: "Ingest",
@@ -57,6 +60,51 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  // ── Featured: shown first ──
+  {
+    title: "Pharmaceutical Sales Analysis",
+    category: "BI & Analytics",
+    description:
+      "Distributor-level sales analysis for Germany and Poland, from raw multi-source data to stakeholder dashboards.",
+    points: [
+      "Integrated 500K+ sales records from three sources and identified 15+ data-quality issues",
+      "Designed a normalized star schema with five fact and dimension tables",
+      "Built three dashboards covering territory performance, distributor trends and revenue forecasts for 20+ sales stakeholders",
+    ],
+    tags: ["Power BI", "Power Query", "DAX", "SQL", "Data Modeling"],
+    link: "https://github.com/harshskumar232/Pharmaceutical-Sales-Analysis",
+    image: "/projects/pharmaceutical-sales.webp",
+  },
+  {
+    title: "MRI Reconstruction Project",
+    category: "Research · Data Quality",
+    description:
+      "Data-quality analysis of speech MRI recordings that flags audio-video issues for manual validation.",
+    points: [
+      "Analyzed 2,371 speech MRI videos from 75 subjects",
+      "Checked for eight types of audio-video issues and flagged 259 files (10.9%) for review",
+      "Produced Excel reports and charts, and recalibrated thresholds to reduce false positives",
+    ],
+    tags: ["Python", "pandas", "SciPy", "librosa", "OpenCV", "Excel reporting"],
+    link: "https://github.com/harshskumar232/MRI-reconstruction-project",
+    image: "/projects/mri-sync-analyzer.webp",
+    fit: "contain",
+  },
+  {
+    title: "MedRAG",
+    category: "AI / LLM",
+    description:
+      "An AI assistant for healthcare documents that answers questions grounded in uploaded PDFs and data files, with agents for summaries and structured symptom checks.",
+    points: [
+      "Parses PDF, CSV, JSON and TXT into a persistent ChromaDB store",
+      "Two agents: a medical summary agent and a structured symptom checker",
+      "REST API in FastAPI connected to an HTML frontend",
+    ],
+    tags: ["Python", "FastAPI", "Claude API", "ChromaDB", "Docker"],
+    link: "https://github.com/harshskumar232/medrag",
+    highlight: { value: "4", label: "document formats, one vector store" },
+  },
+  // ── More projects ──
   {
     title: "Supply Chain Analytics Pipeline",
     category: "Data Engineering",
@@ -86,35 +134,6 @@ export const projects: Project[] = [
     image: "/projects/rag-document-qa.webp",
   },
   {
-    title: "Pharmaceutical Sales Analytics",
-    category: "BI & Analytics",
-    description:
-      "Distributor-level sales analysis for Germany and Poland: 500K+ records from 3 sources, with 15+ data quality issues found and fixed.",
-    points: [
-      "Normalised star schema with 5 fact and dimension tables",
-      "Model tuned for sub-second query latency",
-      "3 interactive Power BI dashboards from executive view to detail",
-    ],
-    tags: ["Power BI", "Power Query", "DAX", "SQL", "Python"],
-    link: "https://github.com/harshskumar232/Pharmaceutical-Sales-Analysis",
-    image: "/projects/pharmaceutical-sales.webp",
-  },
-  {
-    title: "MRI Audio-Video Sync Analyzer",
-    category: "Research",
-    description:
-      "An analyser that validates timing between MRI audio and video recordings and flags the ones that drift.",
-    points: [
-      "Classifies recordings into good sync, duration mismatch and missing audio",
-      "Measures sync offset in milliseconds against acceptable and poor thresholds",
-      "Data profiling and quality reports across the whole dataset",
-    ],
-    tags: ["Python", "pandas", "Signal analysis", "Matplotlib"],
-    link: "https://github.com/harshskumar232",
-    image: "/projects/mri-sync-analyzer.webp",
-    fit: "contain",
-  },
-  {
     title: "Customer Churn Prediction",
     category: "Machine Learning",
     description:
@@ -127,20 +146,6 @@ export const projects: Project[] = [
     tags: ["Python", "scikit-learn", "pandas", "SQL"],
     link: "https://github.com/harshskumar232/Customer-Churn-Prediction---Python-SQL",
     highlight: { value: "0.84", label: "AUC on held-out customers" },
-  },
-  {
-    title: "MedRAG Clinical Intelligence",
-    category: "AI / LLM",
-    description:
-      "A local RAG system for healthcare documents with a FastAPI backend and a web frontend.",
-    points: [
-      "Parses PDF, CSV, JSON and TXT into a persistent ChromaDB store",
-      "Two agents: a medical summary agent and a symptom checker",
-      "REST API in FastAPI connected to an HTML frontend",
-    ],
-    tags: ["Python", "FastAPI", "ChromaDB", "PyMuPDF", "Claude API"],
-    link: "https://github.com/harshskumar232/medrag",
-    highlight: { value: "4", label: "document formats, one vector store" },
   },
   {
     title: "SQL Query Assistant",
@@ -160,42 +165,44 @@ export const projects: Project[] = [
 
 export const experience = [
   {
-    role: "Data Engineer Intern",
+    role: "Data Analyst",
     org: "Suflex Media",
-    orgLink: "https://intaskr.com",
-    period: "Jan 2024 – Oct 2024",
-    summary:
-      "Worked on the data platform behind Intaskr, a SaaS task-management product.",
+    meta: "Bangalore · Hybrid",
+    period: "January 2024 – February 2025",
     points: [
-      "Built automated ETL pipelines in Apache Airflow processing 230K+ daily records from PostgreSQL",
-      "Cut processing time by 40% and tuned schemas for sub-2s queries",
-      "Built the Power BI dashboards the team used for analytics and reporting",
+      "Contributed to the backend and data infrastructure of Intaskr, a SaaS task-management platform",
+      "Automated Python and SQL ETL pipelines processing 230K+ records per day",
+      "Built Power BI dashboards for 20+ stakeholders to track business metrics, KPIs and operational performance",
     ],
   },
 ];
 
+export const about =
+  "I am an M.Sc. Data Science student at FAU Erlangen, based in Erlangen, Germany. My experience includes automated data pipelines, Power BI reporting and KPI validation. My projects also explore medical imaging data quality and AI assistants for healthcare documents.";
+
 export const education = [
   {
-    degree: "M.Sc. Data Science",
-    org: "Friedrich-Alexander-Universität Erlangen-Nürnberg",
-    period: "Expected 2027",
+    degree: "Master's in Data Science",
+    org: "FAU Erlangen-Nürnberg",
+    period: "April 2025 – Present",
   },
   {
-    degree: "B.Sc. Computer Science",
-    org: "",
-    period: "Completed",
+    degree: "Bachelor's in Computer Science Engineering",
+    org: "SRM University, Delhi NCR, India",
+    period: "October 2020 – June 2024",
   },
 ];
 
+// Three moving rows: programming and tools / BI and reporting / data and AI.
 export const skills = [
-  ["Python", "SQL", "PostgreSQL", "Apache Airflow", "dbt", "Docker", "Azure", "Git"],
-  ["Power BI", "DAX", "Power Query", "Excel", "Streamlit", "Plotly", "Data Modeling"],
-  ["pandas", "NumPy", "scikit-learn", "SciPy", "ChromaDB", "FastAPI", "RAG", "LLMs"],
+  ["Python", "pandas", "NumPy", "scikit-learn", "SQL", "PostgreSQL", "Git", "Docker"],
+  ["Power BI", "DAX", "Power Query", "Excel", "Dashboard design", "KPI validation", "Star-schema modeling"],
+  ["ETL", "Data integration", "Data validation", "RAG", "LLM assistants", "Azure"],
 ];
 
 export const languages = [
   { name: "English", level: "C1" },
-  { name: "German", level: "B1" },
+  { name: "German", level: "B1 in progress" },
 ];
 
 // Paste any YouTube link. Title and thumbnail load from YouTube.

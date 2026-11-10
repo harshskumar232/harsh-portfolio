@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Statement from "@/components/Statement";
 import Process from "@/components/Process";
+import Experience from "@/components/Experience";
 import Work from "@/components/Work";
 import About from "@/components/About";
 import Vlog from "@/components/Vlog";
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Hero />
         <Statement />
+        <Experience />
         <Work />
         <Process />
         <About />
